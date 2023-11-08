@@ -1,12 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Markets from "./component/Dropdown";
-import Product from "./component/Product-label";
+import List from "./component/List";
 
 function App() {
   return (
     <>
-      <Markets />
-      <Product />
+      <div className="d-flex gap-3">
+        <Markets />
+        <List />
+      </div>
     </>
   );
 }

@@ -1,16 +1,31 @@
-import Form from "react-bootstrap/Form";
+import { useState } from "react";
 
-function Product() {
+function Product({ addTodo }) {
+  const [inputData, setInputData] = useState("");
+
+  const handleChange = (e) => {
+    setInputData(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addTodo(inputData);
+
+    setInputData("");
+  };
+
   return (
     <>
-      <Form.Floating className="mb-3">
-        <Form.Control
-          id="floatingInputCustom"
+      <form className="TodoForm" onSubmit={handleSubmit}>
+        <input
           type="text"
-          placeholder="product name"
+          name="text"
+          onChange={handleChange}
+          value={inputData}
         />
-        <label htmlFor="floatingInputCustom">Product Name</label>
-      </Form.Floating>
+
+        <button>Add Item</button>
+      </form>
     </>
   );
 }
