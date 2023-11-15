@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Product from "./Product-label";
 import { v4 as uuidv4 } from "uuid";
-import TodoWrapper from "./TodoWrapper";
+import TodoWrapper from "./ShoppingList/ShoppingList";
+
 uuidv4();
 
 const List = () => {
@@ -12,31 +13,23 @@ const List = () => {
       ...todos,
       { id: uuidv4(), task: todo, completed: false, isEditing: false },
     ]);
-    console.log(todos);
-  };
-
-  const toggleComplete = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
   };
 
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  useEffect(() => {
+    if (todos.length >= 8) {
+      alert("Alışveriş Tamamlandı");
+    }
+  }, [todos]);
+
   return (
     <div>
       <Product addTodo={addTodo} />
       {todos.map((todo, index) => (
-        <TodoWrapper
-          task={todo}
-          key={index}
-          deleteTodo={deleteTodo}
-          toggleComplete={toggleComplete}
-        />
+        <TodoWrapper task={todo} key={index} deleteTodo={deleteTodo} />
       ))}
     </div>
   );

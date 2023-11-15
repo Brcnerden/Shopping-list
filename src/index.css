@@ -67,3 +67,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.complete {
+  text-decoration: line-through;
+  background-color: red;
+}
+#lined {
+  text-decoration: line-through;
+}
+
+#unLined {
+  text-decoration: none;
+}
